@@ -1,0 +1,117 @@
+{
+  "recommended_threshold": 0.5,
+  "description_required_concepts": [
+    "skill",
+    "qiaomu",
+    "xinzhiyuan",
+    "title_transform",
+    "source_material"
+  ],
+  "negative_patterns": [
+    "不要改标题",
+    "不改标题",
+    "不要新智元",
+    "不是新智元",
+    "只翻译",
+    "只总结",
+    "不要标题党"
+  ],
+  "positive_concepts": {
+    "skill": [
+      "skill",
+      "agent skill",
+      "技能",
+      "能力包"
+    ],
+    "qiaomu": [
+      "qiaomu",
+      "乔木",
+      "向阳乔木"
+    ],
+    "xinzhiyuan": [
+      "新智元",
+      "xinzhiyuan"
+    ],
+    "title_transform": [
+      "标题",
+      "起标题",
+      "改标题",
+      "标题改写",
+      "标题优化",
+      "headline",
+      "rewrite title",
+      "title"
+    ],
+    "source_material": [
+      "文章",
+      "内容",
+      "原文",
+      "稿子",
+      "新闻",
+      "素材",
+      "材料"
+    ],
+    "style": [
+      "风格",
+      "版",
+      "味",
+      "公众号",
+      "爆款",
+      "微信"
+    ]
+  },
+  "should_trigger": [
+    {
+      "text": "把这篇 AI 文章改成新智元版标题",
+      "family": "article-to-title"
+    },
+    {
+      "text": "用 qiaomu-xinzhiyuan-title 给这个稿子起 5 个标题",
+      "family": "explicit-skill"
+    },
+    {
+      "text": "这个文章标题不够新智元，帮我改一下",
+      "family": "headline-rewrite"
+    },
+    {
+      "text": "这条 AI 新闻要发公众号，起一个新智元风格标题",
+      "family": "news-title"
+    },
+    {
+      "text": "Use $qiaomu-xinzhiyuan-title to rewrite this AI article headline",
+      "family": "english-explicit"
+    }
+  ],
+  "should_not_trigger": [
+    {
+      "text": "总结这篇新智元文章内容，不改标题",
+      "family": "summarization"
+    },
+    {
+      "text": "帮我写一个学术论文标题，克制一点",
+      "family": "academic-title"
+    },
+    {
+      "text": "给这篇文章起一个乔木博客标题，不要新智元风格",
+      "family": "other-brand"
+    },
+    {
+      "text": "只翻译这个标题成英文",
+      "family": "translation"
+    }
+  ],
+  "near_neighbor": [
+    {
+      "text": "分析新智元公众号的选题策略，不要改标题",
+      "family": "strategy-analysis"
+    },
+    {
+      "text": "把标题改成36氪风格，不是新智元",
+      "family": "other-media-style"
+    },
+    {
+      "text": "写一个通用微信公众号标题，不要标题党",
+      "family": "generic-wechat-title"
+    }
+  ]
+}

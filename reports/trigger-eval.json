@@ -1,0 +1,197 @@
+{
+  "ok": true,
+  "threshold": 0.5,
+  "description_concepts": [
+    "qiaomu",
+    "skill",
+    "source_material",
+    "style",
+    "title_transform",
+    "xinzhiyuan"
+  ],
+  "missing_description_concepts": [],
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "false_positive": 0,
+    "false_negative": 0,
+    "pass_rate": 1.0
+  },
+  "failures": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "把这篇 AI 文章改成新智元版标题",
+        "family": "article-to-title",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.8,
+        "matched_concepts": [
+          "source_material",
+          "style",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "用 qiaomu-xinzhiyuan-title 给这个稿子起 5 个标题",
+        "family": "explicit-skill",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.8,
+        "matched_concepts": [
+          "qiaomu",
+          "source_material",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "这个文章标题不够新智元，帮我改一下",
+        "family": "headline-rewrite",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "source_material",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "这条 AI 新闻要发公众号，起一个新智元风格标题",
+        "family": "news-title",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.8,
+        "matched_concepts": [
+          "source_material",
+          "style",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "Use $qiaomu-xinzhiyuan-title to rewrite this AI article headline",
+        "family": "english-explicit",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "qiaomu",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": null
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "总结这篇新智元文章内容，不改标题",
+        "family": "summarization",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "source_material",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": "不改标题"
+      },
+      {
+        "prompt": "帮我写一个学术论文标题，克制一点",
+        "family": "academic-title",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "title_transform"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "给这篇文章起一个乔木博客标题，不要新智元风格",
+        "family": "other-brand",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "qiaomu",
+          "source_material",
+          "style",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": "不要新智元"
+      },
+      {
+        "prompt": "只翻译这个标题成英文",
+        "family": "translation",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.2,
+        "matched_concepts": [
+          "title_transform"
+        ],
+        "negative_pattern": "只翻译"
+      }
+    ],
+    "near_neighbor": [
+      {
+        "prompt": "分析新智元公众号的选题策略，不要改标题",
+        "family": "strategy-analysis",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "style",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": "不要改标题"
+      },
+      {
+        "prompt": "把标题改成36氪风格，不是新智元",
+        "family": "other-media-style",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.6,
+        "matched_concepts": [
+          "style",
+          "title_transform",
+          "xinzhiyuan"
+        ],
+        "negative_pattern": "不是新智元"
+      },
+      {
+        "prompt": "写一个通用微信公众号标题，不要标题党",
+        "family": "generic-wechat-title",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.4,
+        "matched_concepts": [
+          "style",
+          "title_transform"
+        ],
+        "negative_pattern": "不要标题党"
+      }
+    ]
+  }
+}

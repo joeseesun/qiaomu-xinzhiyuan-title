@@ -1,0 +1,19 @@
+name: Feature request
+description: Suggest an improvement for qiaomu-xinzhiyuan-title
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What should the skill do better?
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example prompts or titles
+      description: Share minimal examples only. Do not include private corpora or full copyrighted articles.
+    validations:
+      required: false

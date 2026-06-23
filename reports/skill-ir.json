@@ -1,0 +1,154 @@
+{
+  "schema_version": "2.0.0-qiaomu-lite",
+  "generated_at": "2026-06-23",
+  "package": {
+    "name": "qiaomu-xinzhiyuan-title",
+    "version": "0.1.0",
+    "owner": "向阳乔木",
+    "maturity_tier": "production",
+    "lifecycle_stage": "local-reusable",
+    "upstream_inspiration": "qiaomu-meta-skill; yaojingang/yao-meta-skill"
+  },
+  "intent": {
+    "description": "Rewrite Chinese AI or tech 文章、新闻素材、article titles, article drafts, and source material into 新智元-style headline options for Qiaomu workflows. Use this skill when the user asks for 新智元版标题, 新智元风格起标题, 微信公众号爆款标题改写, or to convert an article/title into a high-density AI media headline while preserving facts.\n",
+    "job_to_be_done": "Turn user-provided AI/tech articles, news source material, article drafts, or existing titles into 新智元-style Chinese headline options while preserving source facts.",
+    "target_users": [
+      "Qiaomu operator",
+      "Qiaomu content editor",
+      "Chinese AI media headline writer"
+    ],
+    "qiaomu_defaults": {
+      "language": "zh-CN-first",
+      "style": "新智元式 AI 媒体标题",
+      "copyright": "Copyright (c) 向阳乔木",
+      "x": "https://x.com/vista8",
+      "github": "https://github.com/joeseesun/"
+    }
+  },
+  "triggers": {
+    "should_trigger": [
+      "把这篇 AI 文章改成新智元版标题",
+      "用 qiaomu-xinzhiyuan-title 给这个稿子起 5 个标题",
+      "这个文章标题不够新智元，帮我改一下",
+      "这条 AI 新闻要发公众号，起一个新智元风格标题",
+      "Use $qiaomu-xinzhiyuan-title to rewrite this AI article headline"
+    ],
+    "should_not_trigger": [
+      "总结这篇新智元文章内容，不改标题",
+      "帮我写一个学术论文标题，克制一点",
+      "给这篇文章起一个乔木博客标题，不要新智元风格",
+      "只翻译这个标题成英文"
+    ],
+    "near_neighbor": [
+      "分析新智元公众号的选题策略，不要改标题",
+      "把标题改成36氪风格，不是新智元",
+      "写一个通用微信公众号标题，不要标题党"
+    ]
+  },
+  "workflow": {
+    "router_rules": [
+      "Trigger for 新智元版标题, 新智元风格起标题, 公众号爆款标题改写, or explicit qiaomu-xinzhiyuan-title requests.",
+      "Do not trigger for summaries, translations, academic titles, Qiaomu blog titles, or other media styles when the user says not to use 新智元.",
+      "Always preserve facts and mark unsupported freshness, ranking, authority, money, benchmark, or named-person claims."
+    ],
+    "compact_workflow": [
+      "Extract core entity, action, hard hooks, authority, stakes, and affected group from the input.",
+      "Choose one primary angle: major AI entity, hard number, conflict/reversal, authority/ranking, China/global frame, or user consequence.",
+      "Generate 5-7 candidates across recommended, number-heavy, conflict, authority, question, and restrained versions.",
+      "Score candidates against length, entity, number, action, consequence, punctuation, quoted concept, and source-required claim checks.",
+      "Return recommended title first, alternatives second, then style basis and fact boundary."
+    ],
+    "gate_ladder": [
+      "Scaffold: SKILL.md frontmatter, README hook, clear exclusions.",
+      "Production: interface.yaml, trigger_cases.json, source-analysis reference, score_title.py, trigger eval report.",
+      "Library: skill-ir.json, portability notes, trust boundary.",
+      "Governed: not selected; no account, credential, publication, or external action."
+    ],
+    "output_contract": [
+      "Default output: 推荐标题, 3+备选, 风格依据, 事实边界.",
+      "When the user requests one title, output one 推荐标题 and a short fact-boundary note if needed.",
+      "Do not invent unsupported facts; prefer restrained version when source stakes are weak."
+    ]
+  },
+  "resources": {
+    "references": [
+      "references/xinzhiyuan-title-style.md"
+    ],
+    "scripts": [
+      "scripts/score_title.py"
+    ],
+    "evals": [
+      "evals/trigger_cases.json"
+    ],
+    "reports": [
+      "reports/skill-ir.json",
+      "reports/trigger-eval.json"
+    ]
+  },
+  "portability": {
+    "canonical_format": "agent-skills",
+    "adapter_targets": [
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible",
+      "vscode"
+    ],
+    "activation": {
+      "mode": "manual",
+      "paths": [
+        "references/xinzhiyuan-title-style.md"
+      ]
+    },
+    "execution": {
+      "context": "inline",
+      "shell": "bash"
+    },
+    "trust": {
+      "source_tier": "local-analysis",
+      "remote_inline_execution": "forbid",
+      "remote_metadata_policy": "allow-metadata-only",
+      "generated_public_claims": "source-bound"
+    },
+    "permissions": {
+      "network": "none required",
+      "file_write": "none during normal title rewriting",
+      "subprocess": "optional local score_title.py only",
+      "interactive": "avoid unless the source facts are insufficient and the user asks for factual claims"
+    },
+    "degradation": {
+      "openai": "metadata-adapter",
+      "claude": "neutral-source-plus-adapter",
+      "generic": "neutral-source",
+      "agent-skills-compatible": "canonical-source",
+      "vscode": "neutral-source-plus-review-notes"
+    }
+  },
+  "gates": {
+    "scaffold": [
+      "SKILL.md frontmatter",
+      "README hook and natural trigger examples",
+      "clear exclusions"
+    ],
+    "production": [
+      "agents/interface.yaml",
+      "evals/trigger_cases.json",
+      "scripts/score_title.py",
+      "source-analysis-backed reference"
+    ],
+    "library": [
+      "reports/skill-ir.json",
+      "portability notes",
+      "trust boundary"
+    ],
+    "governed": [
+      "not selected; no account, credential, or publication action"
+    ]
+  },
+  "evidence_boundary": {
+    "generated_reports_are_evidence": true,
+    "planned_work_is_evidence": false,
+    "missing_external_or_human_evidence_label": "missing evidence",
+    "public_claim_policy": "claim only what local validation, install proof, human review, or provider-backed evidence actually supports"
+  }
+}

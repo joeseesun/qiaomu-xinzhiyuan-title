@@ -1,0 +1,55 @@
+interface:
+  display_name: "Qiaomu Xinzhiyuan Title"
+  short_description: "Rewrite AI and tech articles into 新智元-style Chinese headlines"
+  default_prompt: "Use $qiaomu-xinzhiyuan-title to rewrite my article, source material, or draft headline into 新智元-style Chinese headline options while preserving facts and marking unsupported claims."
+  examples:
+    - "把这篇文章改成新智元版标题"
+    - "这个标题不够新智元，帮我起 5 个更抓人的版本"
+    - "用 qiaomu-xinzhiyuan-title 给这条 AI 新闻起公众号标题"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "agent-skills-compatible"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths:
+      - "references/xinzhiyuan-title-style.md"
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local-analysis"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+    generated_public_claims: "source-bound"
+  permissions:
+    network: "none required"
+    file_write: "none during normal title rewriting"
+    subprocess: "optional local score_title.py only"
+    interactive: "avoid unless the source facts are insufficient and the user asks for factual claims"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    agent-skills-compatible: "canonical-source"
+    vscode: "neutral-source-plus-review-notes"
+gates:
+  scaffold:
+    - "SKILL.md frontmatter"
+    - "README hook and natural trigger examples"
+    - "clear exclusions"
+  production:
+    - "agents/interface.yaml"
+    - "evals/trigger_cases.json"
+    - "scripts/score_title.py"
+    - "source-analysis-backed reference"
+  library:
+    - "reports/skill-ir.json"
+    - "portability notes"
+    - "trust boundary"
+  governed:
+    - "not selected; no account, credential, or publication action"

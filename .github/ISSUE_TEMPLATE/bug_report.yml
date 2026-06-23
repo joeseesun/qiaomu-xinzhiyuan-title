@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a problem with qiaomu-xinzhiyuan-title
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt or source summary
+      description: Please share a minimal prompt or summary. Do not paste private full text.
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: false
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: Commands or screenshots that help reproduce the issue.
+    validations:
+      required: false

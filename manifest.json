@@ -1,0 +1,36 @@
+{
+  "name": "qiaomu-xinzhiyuan-title",
+  "version": "0.1.0",
+  "owner": "向阳乔木",
+  "updated_at": "2026-06-23",
+  "status": "active",
+  "maturity_tier": "production",
+  "lifecycle_stage": "local-reusable",
+  "upstream_inspiration": "qiaomu-meta-skill; yaojingang/yao-meta-skill",
+  "description": "Rewrite AI and tech article titles into 新智元-style headline options while preserving source facts.",
+  "qiaomu_defaults": {
+    "language": "zh-CN-first",
+    "style": "新智元式 AI 媒体标题",
+    "copyright": "Copyright (c) 向阳乔木",
+    "x": "https://x.com/vista8",
+    "github": "https://github.com/joeseesun/"
+  },
+  "source_evidence": {
+    "type": "local workbook aggregate analysis",
+    "source": "maintainer-provided local workbook; aggregate analysis only",
+    "title_count": 2688,
+    "raw_corpus_bundled": false
+  },
+  "release_gates": {
+    "validate_skill": "required",
+    "trigger_eval": "required",
+    "skill_ir": "required",
+    "output_quality": "style checklist and optional score_title.py; missing evidence for human A/B test"
+  },
+  "trust_boundary": {
+    "network": "not required",
+    "credentials": "not required",
+    "file_access": "normal use reads only bundled skill references",
+    "fact_policy": "do not invent unsupported freshness, rankings, authorities, numbers, or named people"
+  }
+}
